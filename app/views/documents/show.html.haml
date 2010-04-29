@@ -1,0 +1,15 @@
+#original_text
+  %h2 Your Document
+  = raw render_document_text(@document)
+
+#complex_words
+  %h2 Definitions
+  - if !@document.complex_words.empty?
+    %ul
+      - @document.complex_words_sorted_by_syllables.each do |word, num_syllables|
+        %li
+          = raw word
+
+#more_information
+  %h2 More Information
+  - # @wiki_html

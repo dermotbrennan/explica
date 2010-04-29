@@ -1,0 +1,7 @@
+.bundle
+db/*.sqlite3
+log/*.log
+tmp/**/*
+public/min
+vendor/cache
+Thumbs.db

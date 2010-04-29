@@ -1,0 +1,1 @@
+STOP_WORDS = File.read(Rails.root.join('lib', 'stop_words.txt')).split(/\W/)

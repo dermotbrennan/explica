@@ -1,0 +1,14 @@
+!!!
+%html
+  %head
+    %title Simplifytext.com
+    = stylesheet_link_tag :all
+    = csrf_meta_tag
+  %body{:id => "body-#{controller_name}"}
+    #primary_wrapper
+      #header
+        %h1 SimplifyText
+      #main_content= yield
+
+    = javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"
+    = javascript_include_tag "application"

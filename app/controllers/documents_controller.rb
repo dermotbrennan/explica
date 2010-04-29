@@ -1,0 +1,26 @@
+class DocumentsController < ApplicationController
+  def new
+    @document = Document.new
+  end
+
+  def create
+    @document = Document.new(params[:document])
+    if @document.save
+      redirect_to @document
+    else
+      render :action => :new
+    end
+  end
+
+  def show
+    @document = Document.find(params[:id])
+
+
+    wikipedia_result = Wikipedia.download
+
+
+    #@wiki_html = WikiCloth::WikiCloth.new({:data => res.body}).to_html.force_encoding("ascii-8bit").html_safe
+
+  end
+
+end

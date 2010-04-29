@@ -1,0 +1,13 @@
+body  {
+  margin: 0px;
+}
+
+#primary_wrapper {
+  float: left;
+  margin-left: -480px;
+  left: 50%;
+  position: absolute;
+  width: 960px;
+  padding: 8px;
+  border: 1px solid #333;
+}

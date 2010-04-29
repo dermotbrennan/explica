@@ -1,0 +1,14 @@
+#original_text {
+  float: left;
+  width: 60%;
+}
+
+#original_text span.word:hover {
+  background-color: #CFEEFF;
+  cursor: pointer;
+}
+
+#more_information, #complex_words {
+  float: left;
+  width: 40%;
+}
