@@ -1,6 +1,11 @@
 #original_text {
   float: left;
   width: 60%;
+  line-height: 160%;
+}
+
+#original_text #instructions {
+  margin-bottom: 10px;
 }
 
 #original_text span.word:hover {

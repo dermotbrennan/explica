@@ -15,9 +15,8 @@ class DocumentsController < ApplicationController
   def show
     @document = Document.find(params[:id])
 
-
-    wikipedia_result = Wikipedia.download
-
+    #wikipedia_result = Wikipedia.download
+    # @document.complex_words_sorted_by_syllables.each do |word, num_syllables|
 
     #@wiki_html = WikiCloth::WikiCloth.new({:data => res.body}).to_html.force_encoding("ascii-8bit").html_safe
 

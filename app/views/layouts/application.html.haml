@@ -2,7 +2,7 @@
 %html
   %head
     %title Simplifytext.com
-    = stylesheet_link_tag :all
+    = stylesheet_link_tag "reset", "application", "documents"
     = csrf_meta_tag
   %body{:id => "body-#{controller_name}"}
     #primary_wrapper
