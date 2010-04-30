@@ -1,6 +1,5 @@
 SimplifytextCom::Application.routes.draw do |map|
   resources :definitions
-
   resources :documents
 
   # The priority is based upon order of creation:

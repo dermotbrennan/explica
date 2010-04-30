@@ -1,8 +1,10 @@
 class DefinitionsController < ApplicationController
   def show
-    @definition = Definition.find_by_name(params[:id])
+    @word = params[:id]
+    @definitions = Wordnik.definitions(@word)
+    @definitions.reject! {|d| d.text.blank? }
     respond_to do |format|
-      format.json { @definition.to_json }
+      format.js { render }
     end
   end
 end

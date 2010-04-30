@@ -34,7 +34,6 @@ ol.alpha { list-style-type: lower-alpha; }
   left: 50%;
   position: absolute;
   width: 960px;
-  padding: 8px;
   border: 1px solid #333;
   text-align: left;
 }
@@ -42,6 +41,8 @@ ol.alpha { list-style-type: lower-alpha; }
 /* header */
 #header {
   border-bottom: 1px solid #000;
-  margin-bottom: 20px;
+  padding: 8px 0px;
+  text-indent: 20px;
 }
+
 

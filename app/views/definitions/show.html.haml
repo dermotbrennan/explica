@@ -1,0 +1,9 @@
+%h3= @word
+
+- if !@definitions.empty?
+  %ol
+    - @definitions.each do |definition|
+      %li.text= definition.text
+  %p.source= link_to 'Worknik.com', "http://wordnik.com", :target => '_blank'
+- else
+  %p.none Couldn't find anything for that.
