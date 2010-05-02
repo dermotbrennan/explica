@@ -1,9 +1,16 @@
-%h3= @word
+%h2= @original_word
 
-- if !@definitions.empty?
-  %ol
-    - @definitions.each do |definition|
-      %li.text= definition.text
-  %p.source= link_to 'Worknik.com', "http://wordnik.com", :target => '_blank'
-- else
-  %p.none Couldn't find anything for that.
+.inner
+  - if !@definitions.empty?
+    .source Worknik.com: #{link_to @word, Wordnik.word_url(@word), :target => '_blank'}
+    %ol.definitions
+      - @definitions.each do |definition|
+        %li.text= definition.text
+    
+  - if @wiki_html
+    #wikipedia_article
+      #wikipedia_title.source Wikipedia: #{link_to @article_title, Wikipedia.article_url(@article_title), :target => '_blank'}
+      #wikipedia_body= @wiki_html
+
+  - if !@wiki_html && @definitions.empty?
+    %p.none Sorry couldn't find anything!

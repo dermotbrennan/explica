@@ -40,9 +40,16 @@ ol.alpha { list-style-type: lower-alpha; }
 
 /* header */
 #header {
-  border-bottom: 1px solid #000;
+  width: 100%;
   padding: 8px 0px;
   text-indent: 20px;
+  float: left;
+  border-bottom: 1px solid #333;
 }
 
+#main_content {
+  float: left;
+  width: 960px;
+  
+}
 

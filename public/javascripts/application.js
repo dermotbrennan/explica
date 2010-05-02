@@ -3,12 +3,16 @@
 
 (function($) {
   $(document).ready(function() {
+    //$("#main_content").splitter();
+
     words = $("#original_text span.word");
     if (words.length > 0) {
       words.click(function() {
         word =  $(this).text();
-        $('#definition').html('Loading '+ word + '...');
-        $('#definition').load('/definitions/'+ word, function() {
+        $('#sidebar_right').removeClass('initial');
+        $('#sidebar_right').html("<h2>"+ word + " - loading...</h2>");
+
+        $('#sidebar_right').load('/definitions/'+ word, function() {
           
         });
       })

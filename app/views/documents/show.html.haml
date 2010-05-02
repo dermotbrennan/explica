@@ -1,12 +1,8 @@
-
-#sidebar_right
-  %h2 Definitions
-
-  #definition
-
 #original_text
-  %h2 Your Document
-  %p#instructions Click any word to get an explanation.
+  %h2 Created #{@document.created_at.strftime('%d-%b-%Y %H:%M')}
+
   = raw render_document_text(@document)
 
-  
+#sidebar_right.initial
+  %p#instructions Click any word in the text to get an explanation.
+ 

@@ -31,11 +31,14 @@ class Wordnik
       raw_defs = self.get("/word.json/#{word}/definitions", {:headers => {'api_key' => API_KEY}} )
 
       definitions = Array.new
-      raw_defs.each do |definition|
-        definitions << Definition.new( :word => definition['headword'],
-                                       :text => definition['text'],
-                                       :extended_text => definition['extendedText'],
-                                       :part_of_speech => definition['partOfSpeech'] )
+
+      if raw_defs.is_a?(Array)
+        raw_defs.each do |definition|
+          definitions << Definition.new( :word => definition['headword'],
+                                         :text => definition['text'],
+                                         :extended_text => definition['extendedText'],
+                                         :part_of_speech => definition['partOfSpeech'] )
+        end
       end
       definitions
   end
@@ -53,5 +56,10 @@ class Wordnik
       end
 
       words
+  end
+
+  # given a word, create a url to that word on wordnik.com
+  def self.word_url(word)
+    "http://wordnik.com/words/" + word
   end
 end

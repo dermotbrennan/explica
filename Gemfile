@@ -16,6 +16,7 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 # Bundle the extra gems:
 gem 'haml'
 gem 'lingua'
+gem 'ruby-stemmer'
 gem 'httparty'
 # gem 'bj'
 # gem 'nokogiri', '1.4.1'
