@@ -18,6 +18,13 @@ gem 'haml'
 gem 'lingua'
 gem 'ruby-stemmer'
 gem 'httparty'
+
+# heroku
+group :production do
+  gem 'pg'
+  gem 'thin'
+end
+
 # gem 'bj'
 # gem 'nokogiri', '1.4.1'
 # gem 'sqlite3-ruby', :require => 'sqlite3'
