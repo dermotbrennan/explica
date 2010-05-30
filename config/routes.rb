@@ -1,4 +1,4 @@
-SimplifytextCom::Application.routes.draw do |map|
+Explica::Application.routes.draw do |map|
   match 'wiki/:id', :to => 'wiki#show'
 
   resources :definitions
