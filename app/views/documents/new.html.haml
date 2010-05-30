@@ -1,6 +1,8 @@
+%h1 Create a new document
+
 = form_for @document do |f|
   = f.error_messages
   %fieldset
     %ul
-      %li= f.text_area :original, :html_input => {:cols => 20, :rows => 50}
-      %li= f.submit 'Simplify'
+      %li= f.text_area :original, :cols => 100, :rows => 20
+      %li= f.submit 'Submit'

@@ -42,14 +42,39 @@ ol.alpha { list-style-type: lower-alpha; }
 #header {
   width: 100%;
   padding: 8px 0px;
-  text-indent: 20px;
   float: left;
   border-bottom: 1px solid #333;
 }
 
+#header #logo { text-indent: 20px; font-size: 18px; font-weight: bold; }
+
+/* navbar */
+#header #navbar { 
+  float: right;
+  margin-top: -8px;
+  padding: 8px;
+  background-color: #ccc;
+  border: 1px solid #aaa;
+  -moz-border-radius-bottomleft: 8px;
+  -webkit-border-bottom-left-radius: 8px;
+  /*-moz-border-radius-bottomright: 5px;
+  -webkit-border-bottom-right-radius: 5px;*/
+}
+
+#header #navbar li { list-style-type: none;  }
+
+/* main content */
 #main_content {
   float: left;
-  width: 960px;
-  
+  width: 100%; /*960px;*/
+}
+
+#main_content_inner {
+  float: left;
+  margin: 20px;
+}
+
+#main_content_inner_with_sidebar {
+  overflow: hidden !important;
 }
 

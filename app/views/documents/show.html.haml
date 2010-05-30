@@ -1,8 +1,10 @@
-#original_text
-  %h2 Created #{@document.created_at.strftime('%d-%b-%Y %H:%M')}
+- @sidebar_present = true
+#original_text.initial.resizable
+  #original_text_inner
+    %h2 Created #{@document.created_at.strftime('%d-%b-%Y %H:%M')}
+    = raw render_document_text(@document)
 
-  = raw render_document_text(@document)
+#sidebar_right
+  #sidebar_right_inner
+    %p#instructions Click any word in the text to get an explanation.
 
-#sidebar_right.initial
-  %p#instructions Click any word in the text to get an explanation.
- 

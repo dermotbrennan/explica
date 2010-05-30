@@ -3,13 +3,23 @@
   %head
     %title Simplifytext.com
     = stylesheet_link_tag "reset", "application", "documents"
+    = stylesheet_link_tag "ui-lightness/jquery-ui-1.8.1.custom"
     = csrf_meta_tag
   %body{:id => "body-#{controller_name}"}
     #primary_wrapper
       #secondary_wrapper
         #header
-          %h1 SimplifyText
-        #main_content= yield
+          #navbar
+            %ul
+              %li= link_to 'create new document', new_document_path
+          #logo SimplifyText
+        #main_content
+          - if @sidebar_present
+            #main_content_inner_with_sidebar= yield
+          - else
+            #main_content_inner= yield
 
     = javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"
+    = javascript_include_tag "jquery.equalheights"
+    = javascript_include_tag "jquery-ui-1.8.1.custom.min"
     = javascript_include_tag "application"
