@@ -5,3 +5,4 @@ tmp/**/*
 public/min
 vendor/cache
 Thumbs.db
+nbproject

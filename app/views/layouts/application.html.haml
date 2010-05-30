@@ -1,7 +1,7 @@
 !!!
 %html
   %head
-    %title Simplifytext.com
+    %title Explica - advanced text comprehension tool
     = stylesheet_link_tag "reset", "application", "documents"
     = stylesheet_link_tag "ui-lightness/jquery-ui-1.8.1.custom"
     = csrf_meta_tag
@@ -12,7 +12,7 @@
           #navbar
             %ul
               %li= link_to 'create new document', new_document_path
-          #logo SimplifyText
+          #logo Explica
         #main_content
           - if @sidebar_present
             #main_content_inner_with_sidebar= yield
