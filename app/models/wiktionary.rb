@@ -1,6 +1,6 @@
 require 'httparty'
 
-class Wikipedia
+class Wiktionary
   include HTTParty
   format :json
   base_uri 'http://en.wiktionary.org/'
