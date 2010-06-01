@@ -76,3 +76,11 @@ ol.alpha { list-style-type: lower-alpha; }
   overflow: hidden !important;
 }
 
+/* new document */
+#create {
+  float: left;  
+}
+
+#recent {
+  float: left;
+}

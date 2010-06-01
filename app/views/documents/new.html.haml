@@ -1,8 +1,28 @@
-%h1 Create a new document
+#create
+  %h1 Create a new document
 
-= form_for @document do |f|
-  = f.error_messages
-  %fieldset
-    %ul
-      %li= f.text_area :original, :cols => 100, :rows => 20
-      %li= f.submit 'Submit'
+  = form_for @document do |f|
+    = f.error_messages
+    %fieldset
+      %ul
+        %li= f.text_area :original, :cols => 80, :rows => 20
+        %li
+          = f.label :is_public, 'Make public'
+          = f.check_box :is_public
+        %li= f.submit 'Submit'
+
+#recent
+  - if false
+    #recent_user
+      %h2 Recently opened by you
+  
+
+  
+  #recent_public
+    %h2 Recent public documents
+    - if !Document.public.empty?
+      %ul
+        - Document.public.each do |document|
+          %li= link_to truncate_html(document.original, :length => 100), document
+    - else
+      %p None.

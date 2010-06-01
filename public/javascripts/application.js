@@ -22,13 +22,22 @@
     $('#sidebar_right').width((jQuery('#primary_wrapper').width()) - $('#original_text').width() - 28);
 
 
-    words = $("#original_text span.word");
+    words = $("#original_text span.word, #sidebar_right #history ul li a");
     if (words.length > 0) {
-      words.click(function() {
+      words.live('click', function() {
         word =  $(this).text();
         $('#sidebar_right').removeClass('initial');
         $('#sidebar_right_inner').prepend("<h2>"+ word + " - loading...</h2>");
+        $('#sidebar_right #history ul li a').removeClass('current');
+        word_link_text = "#"+word
+        historic_word = $('#sidebar_right #history ul li a[href='+word_link_text + ']')
+        if (historic_word.length > 0) {
+          historic_word.addClass('current');
+        } else {
+          $('#sidebar_right #history ul').append("<li><a href='"+word_link_text+"' class='current'>"+word+"</a></li>");
+        }
 
+        
         $('#sidebar_right_inner').load('/definitions/'+ word, function() {
           inner_els.css("overflow", "auto");
         });

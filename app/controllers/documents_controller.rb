@@ -13,7 +13,7 @@ class DocumentsController < ApplicationController
   end
 
   def show
-    @document = Document.find(params[:id])
+    @document = Document.find_by_checksum(params[:id])
 
     #wikipedia_result = Wikipedia.download
     # @document.complex_words_sorted_by_syllables.each do |word, num_syllables|

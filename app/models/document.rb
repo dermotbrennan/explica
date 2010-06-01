@@ -23,6 +23,12 @@ class Document < ActiveRecord::Base
       reverse
   end
 
+  scope :public, where(:is_public => true)
+
+
+  def to_param
+    checksum
+  end
 
   private
   def recreate_hash

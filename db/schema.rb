@@ -9,24 +9,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100419214906) do
-
-  create_table "definitions", :force => true do |t|
-    t.string   "name"
-    t.text     "body"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "definitions", ["name"], :name => "index_definitions_on_name"
+ActiveRecord::Schema.define(:version => 20100418122108) do
 
   create_table "documents", :force => true do |t|
-    t.string   "checksum",   :null => false
-    t.text     "original",   :null => false
+    t.string   "checksum",                      :null => false
+    t.text     "original",                      :null => false
+    t.boolean  "is_public",  :default => false, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "documents", ["checksum"], :name => "index_documents_on_checksum"
+  add_index "documents", ["created_at"], :name => "index_documents_on_created_at"
+  add_index "documents", ["is_public"], :name => "index_documents_on_is_public"
 
 end

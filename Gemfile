@@ -18,6 +18,7 @@ gem 'haml'
 gem 'lingua'
 gem 'ruby-stemmer'
 gem 'httparty'
+gem 'truncate_html'
 
 # heroku
 group :production do

@@ -13,7 +13,7 @@
           #navbar
             %ul
               %li= link_to 'create new document', new_document_path
-          #logo Explica
+          #logo= link_to "Explica", :root
         #main_content
           - if @sidebar_present
             #main_content_inner_with_sidebar= yield
