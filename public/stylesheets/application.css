@@ -30,10 +30,8 @@ ol.alpha { list-style-type: lower-alpha; }
 /* layout */
 #primary_wrapper {
   float: left;
-  margin-left: -480px;
-  left: 50%;
-  position: absolute;
-  width: 960px;
+  margin: 0px 10px;
+  width: 99%;
   border: 1px solid #333;
   text-align: left;
 }

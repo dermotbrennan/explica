@@ -6,13 +6,16 @@
 /* show document */
 #original_text {
   line-height: 160%;
-  width: 602px;
   height: 100%;
+  padding: 10px;
   float: left;
+  text-align: center;
 }
 
 #original_text_inner {
-  margin: 10px;
+  width: 602px;
+  margin: 10px auto;
+  text-align: left;
 }
 
 #original_text #instructions {
@@ -62,6 +65,9 @@
   text-indent: 10px;
   line-height: 200%;
   background-color: #b88;
+  float: left;
+  clear: both;
+  width: 100%;
 }
 
 #sidebar_right_inner > h2 {
@@ -85,7 +91,36 @@ ol.definitions li {
   clear: right;
   margin: 5px;
 }
+
+#wikipedia_article p {
+  line-height: 1.2em;
+}
+
+#wikipedia_article a {
+  color: #0645AD !important;
+}
+
+#wikipedia_article a:hover {
+  text-decoration: underline;
+}
+
 #wikipedia_article .editsection { display: none; }
+
+#wikipedia_article ul li {
+  margin-left: 20px;
+}
+
+#wikipedia_article h2 {
+  background: none;
+  float: none;
+  border-bottom: 1px solid #aaa;
+}
+
+#wikipedia_article .rellink, #wikipedia_article .dablink {
+  font-style:italic;
+  margin-bottom:0.5em;
+  padding-left:2em;
+}
 
 #wikipedia_article p {
   line-height: 120%;
