@@ -7,6 +7,7 @@
 #original_text {
   line-height: 160%;
   height: 100%;
+  width: 50%;
   padding: 10px;
   float: left;
   text-align: center;
@@ -22,9 +23,21 @@
   margin-bottom: 10px;
 }
 
-#original_text span.word:hover {
-  background-color: #CFEEFF;
+#original_text span.word {
+  background-color: #CFE2FF;
   cursor: pointer;
+}
+
+#original_text span.word:hover {
+  text-decoration: underline;
+}
+
+#original_text span.word.visited {
+  background-color: #eff6ff;
+}
+
+#original_text span.word.current {
+  font-weight: bold;
 }
 
 #sidebar_right {

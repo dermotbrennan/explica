@@ -1,6 +1,34 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
 
+// highlight this word as visited and current in the original text
+function setCurrentWord(word) {
+  jQuery('#original_text span.word').removeClass('current');
+  return jQuery("#original_text span.word:contains("+word+")").addClass('current');
+}
+
+function setVisitedWord(word) {
+  return jQuery("#original_text span.word:contains("+word+")").addClass('visited');
+}
+
+function setCurrentAndVisitedWord(word) {
+  return setCurrentWord(word).addClass('visited');
+}
+
+function loadDefinition(word) {
+  // highlight this word as visited and current in the original text
+        setCurrentAndVisitedWord(word);
+
+        if (localStorage && (definition = localStorage.getItem(word_link_text)) != null && definition.length > 0) {
+          $('#sidebar_right_inner').html(definition);
+        } else {
+          $('#sidebar_right_inner').load('/definitions/'+ word, function() {
+            inner_els.css("overflow", "auto");
+            localStorage.setItem(word_link_text, jQuery('#sidebar_right_inner').html());
+          });
+        }
+}
+
 (function($) {
   $(document).ready(function() {
     //$("#main_content").splitter();
@@ -14,7 +42,7 @@
         inner_els.equalHeights(jQuery(document).height() - 60);
       }
 
-    $(".resizable").resizable({ handles: 'e', ghost: false,
+    $(".resizable").resizable({handles: 'e', ghost: false,
       resize: resize_original,
       start: resize_original
     });
@@ -29,6 +57,16 @@
     // if we previously viewed this document, retrieve the history that we had
     if (typeof(document_id) != undefined && localStorage) {
       jQuery('#sidebar_right #history').html(localStorage.getItem(document_id+'--##--history'));
+
+      // set the words in the original text as visited words
+      jQuery('#sidebar_right #history li a').each(function(i, el) {
+        word = jQuery(el).text();
+        if (jQuery(el).hasClass('current')) {
+          loadDefinition(word);
+        } else {
+          setVisitedWord(word);
+        }
+      })
     }
 
     words = $("#original_text span.word, #sidebar_right #history ul li a");
@@ -37,6 +75,8 @@
         word =  $(this).text();
         $('#sidebar_right').removeClass('initial');
         $('#sidebar_right_inner').prepend("<h2>"+ word + " - loading...</h2>");
+
+        // add this word to the history
         $('#sidebar_right #history ul li a').removeClass('current');
         word_link_text = "#"+word
         historic_word = $('#sidebar_right #history ul li a[href='+word_link_text + ']')
@@ -52,14 +92,7 @@
           localStorage.setItem(document_id+'--##--history', jQuery('#sidebar_right #history').html());
         }
 
-        if (localStorage && (definition = localStorage.getItem(word_link_text)) != null && definition.length > 0) {
-          $('#sidebar_right_inner').html(definition);
-        } else {
-          $('#sidebar_right_inner').load('/definitions/'+ word, function() {
-            inner_els.css("overflow", "auto");
-            localStorage.setItem(word_link_text, jQuery('#sidebar_right_inner').html());
-          });
-        }
+        loadDefinition(word);
       })
     }
   })
