@@ -1,6 +1,7 @@
 - @sidebar_present = true
 #original_text.resizable
   #original_text_inner
+    #document_id{:"data-id" => @document.id.to_s}
     %h2 Created #{@document.created_at.strftime('%d-%b-%Y %H:%M')}
     = raw render_document_text(@document)
 
