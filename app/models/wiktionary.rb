@@ -1,13 +1,17 @@
-require 'httparty'
+require 'crack'
+require "em-synchrony/em-http"
 
 class Wiktionary
-  include HTTParty
-  format :json
-  base_uri 'http://en.wiktionary.org/'
-  headers "User-Agent" => 'Dermot Brennan WebApp: dermot.brennan@gmail.com'
-  default_params :action => 'opensearch', :format => 'json'
+  BASE_URI = 'http://en.wiktionary.org/'
+  USER_AGENT = 'Dermot Brennan WebApp: dermot.brennan@gmail.com'
 
-  def self.find(query, limit = 3)
-    get('/api.php', :query => {:search => query, :limit => limit})
+  def self.aget(query, limit = 3)
+    params = {:search => query, :limit => limit, :action => 'opensearch', :format => 'json'}
+    head = {"User-Agent" => USER_AGENT}
+    EventMachine::HttpRequest.new("#{BASE_URI}api.php").aget(:query => params, :head => head)
+  end
+
+  def self.parse(http)
+    Crack::JSON.parse(http.response)
   end
 end

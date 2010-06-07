@@ -1,32 +1,41 @@
 require 'lingua/stemmer'
+require 'em-synchrony'
+#require "em-synchrony/em-http"
 
 class DefinitionsController < ApplicationController
   def show
-    @original_word = @word = params[:id]
+    @word = params[:id]
 
-    @definitions = Wordnik.definitions(@word)
+    # run all our api call asynchronously
+    multi = EventMachine::Synchrony::Multi.new
 
-    # if there were no definitions from the original input, try the singular of it
-    if @definitions.empty?
-      @word = @word.singularize
-      @definitions = Wordnik.definitions(@word)
+    # try a few different variants on the word
+    [@word, @word.singularize, Lingua::Stemmer.new.stem(@word)].uniq.each do |word|
+      multi.add :"wordnik_#{word}", Wordnik.aget(word)
     end
 
-    # if there were no definitions found yet, try definitions for the stem
-    if @definitions.empty?
-      @word = Lingua::Stemmer.new.stem(@word)
-      @definitions = Wordnik.definitions(@word)
+    # search wikipedia
+    multi.add :wikipedia, Wikipedia.aget(@word)
+
+    # do the calls
+    @data = multi.perform.responses[:callback]
+
+    # figure out which word gave results from wordnik
+    wordnik_keys = @data.keys.select {|k| k =~ /^wordnik/ }
+    if !wordnik_keys.empty?
+      @definitions = wordnik_keys.collect do |wordnik_key|
+        if !(definitions = Wordnik.parse(@data[wordnik_key])).empty?
+          @word = wordnik_key.to_s.gsub(/wordnik_/, '') # find the word that had results
+          definitions
+        else
+          nil
+        end
+      end.compact.first
+      @definitions.reject! {|d| d.text.blank? } if @definitions && @definitions.is_a?(Array)
     end
-    @definitions.reject! {|d| d.text.blank? }
 
-    @word = @original_word if @definitions.empty? # if we didnt find anything just use the original word when displaying results
-
-    # find wikipedia articles for the word
-    @article_title, @wiki_html = Wikipedia.download(@original_word)
-#    if !wikipedia_response.blank?
-#      @wiki_html = WikiCloth::WikiCloth.new({:data => wikipedia_response, :link_handler => WikipediaLinkHandler.new}).to_html.force_encoding("ascii-8bit").html_safe
-#    end
-    #ascii-8bit
+    # parse the results of the wikipedia calls
+    @article_title, @wiki_html = Wikipedia.parse(@data[:wikipedia])
     @wiki_html = @wiki_html.force_encoding("UTF-8").html_safe
 
     respond_to do |format|

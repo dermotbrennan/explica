@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.0.beta3'
+gem 'rails', '3.0.0.beta4'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -20,10 +20,21 @@ gem 'ruby-stemmer'
 gem 'httparty'
 gem 'truncate_html'
 
+gem 'thin'
+gem 'rack-fiber_pool', :require => 'rack/fiber_pool'
+
+gem 'eventmachine',     :git => 'git://github.com/eventmachine/eventmachine.git'
+gem 'em-synchrony', :git => 'git://github.com/igrigorik/em-synchrony.git', :require => [
+  'em-synchrony',
+  'em-synchrony/em-http'
+  ]
+
+gem 'em-http-request',:git => 'git://github.com/igrigorik/em-http-request.git', :require => 'em-http'
+gem 'addressable', :require => 'addressable/uri'
+
 # heroku
 group :production do
   gem 'pg'
-  gem 'thin'
 end
 
 # gem 'bj'

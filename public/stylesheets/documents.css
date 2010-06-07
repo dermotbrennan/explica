@@ -37,7 +37,7 @@
 }
 
 #original_text span.word.current {
-  font-weight: bold;
+  background-color: #8FBAFF !important;
 }
 
 #sidebar_right {
@@ -58,6 +58,11 @@
   width: 100%;
   height: auto;
   float: left;
+}
+
+#sidebar_right_inner.loading {
+  background: #eee url(/images/ajax-loader.gif) center no-repeat;
+  height: 500px;
 }
 
 #sidebar_right.initial #instructions {
@@ -94,7 +99,8 @@
 #sidebar_right #history ul li a {
   float: left;
   padding: 4px !important;
-  background-color: #8FBAFF !important;
+  background-color: #CFE2FF !important;
+  
   color: #000 !important;
   border: 1px solid #8FBAFF !important;
   -moz-border-radius: 3px;
@@ -102,11 +108,14 @@
 }
 
 #sidebar_right #history ul li a.current {
+  background-color: #8FBAFF !important;
   border-color: #333 !important;
+  font-weight: bold;
 }
 
 #sidebar_right #history ul li a:hover {
-  background-color: #CFE2FF !important;
+  background-color: #8FBAFF !important;
+  border-color: #333 !important;
 }
 
 #sidebar_right h2 {

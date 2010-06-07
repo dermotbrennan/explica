@@ -1,7 +1,7 @@
 %h2= @original_word
 
 .inner
-  - if !@definitions.empty?
+  - if @definitions && !@definitions.empty?
     .source Worknik.com: #{link_to @word, Wordnik.word_url(@word), :target => '_blank'}
     %ol.definitions
       - @definitions.each do |definition|
@@ -12,5 +12,5 @@
       #wikipedia_title.source Wikipedia: #{link_to @article_title, Wikipedia.article_url(@article_title), :target => '_blank'}
       #wikipedia_body= @wiki_html
 
-  - if !@wiki_html && @definitions.empty?
+  - if !@wiki_html && (@definitions.nil? || @definitions.empty?)
     %p.none Sorry couldn't find anything!

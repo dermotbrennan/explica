@@ -42,5 +42,7 @@ module Explica
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
+    
+    config.threadsafe!
   end
 end
