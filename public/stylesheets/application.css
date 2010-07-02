@@ -44,7 +44,7 @@ ol.alpha { list-style-type: lower-alpha; }
   border-bottom: 1px solid #333;
 }
 
-#header #logo { text-indent: 20px; font-size: 18px; font-weight: bold; }
+#header #logo { text-indent: 20px; font-size: 28px; font-weight: bold; }
 
 /* navbar */
 #header #navbar { 
