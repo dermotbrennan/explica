@@ -23,8 +23,8 @@ gem 'truncate_html'
 gem 'thin'
 gem 'rack-fiber_pool', :require => 'rack/fiber_pool'
 
-gem 'eventmachine', '>=0.12.10'#, :git => 'git://github.com/eventmachine/eventmachine.git'
-gem 'em-synchrony', :git => 'git://github.com/igrigorik/em-synchrony.git', :require => [
+gem 'eventmachine', '>=0.12.10'
+gem 'em-synchrony', :git => 'git://github.com/dermotbrennan/em-synchrony.git', :require => [
   'em-synchrony',
   'em-synchrony/em-http'
   ]
