@@ -128,7 +128,7 @@
   width: 100%;
 }
 
-#sidebar_right_inner > h2 {
+#sidebar_right_inner .results > h2 {
   margin-top: 0px !important;
 }
 

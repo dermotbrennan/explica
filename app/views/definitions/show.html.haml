@@ -2,11 +2,12 @@
 
 .inner
   - if @definitions && !@definitions.empty?
-    .source Worknik.com: #{link_to @word, Wordnik.word_url(@word), :target => '_blank'}
-    %ol.definitions
-      - @definitions.each do |definition|
-        %li.text= definition.text
-    
+    #wordnik_definitions
+      .source Worknik.com: #{link_to @word, Wordnik.word_url(@word), :target => '_blank'}
+      %ol.definitions
+        - @definitions.each do |definition|
+          %li.text= definition.text
+
   - if @wiki_html
     #wikipedia_article
       #wikipedia_title.source Wikipedia: #{link_to @article_title, Wikipedia.article_url(@article_title), :target => '_blank'}

@@ -16,21 +16,32 @@
       return setCurrentWord(word).addClass('visited');
     }
 
+    function getLocalItem(word) {
+      results = jQuery('#results_'+word);
+      if (results.length > 0) {
+        results.addClass('active');
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+
     function loadDefinition(word) {
       // highlight this word as visited and current in the original text
       setCurrentAndVisitedWord(word);
       word_link_text = "#"+word;
 
-      if (localStorage && (definition = localStorage.getItem(word_link_text)) != null && definition.length > 0) {
-        $('#sidebar_right_inner').html(definition).removeClass('loading');
-      } else {
-        $('#sidebar_right_inner').load('/definitions/'+ word, function() {
+      jQuery('#sidebar_right_inner .results').removeClass('active');
+      if (!getLocalItem(word)) {
+        results_id = 'results_' + word
+        $('#sidebar_right_inner').append('<div id="' + results_id + '" class="results active"></div>')
+
+        $('#'+results_id).load('/definitions/'+ word, function() {
           inner_els.css("overflow", "auto");
-          $('#sidebar_right_inner').removeClass('loading');
-          localStorage.setItem(word_link_text, jQuery('#sidebar_right_inner').html());
         });
-      }
-      
+      } 
+      $('#sidebar_right_inner').removeClass('loading');
     }
 
     //$("#main_content").splitter();
@@ -56,27 +67,23 @@
       document_id = document_id_el.attr('data-id');
     }
 
-    // if we previously viewed this document, retrieve the history that we had
-    if (typeof(document_id) != undefined && localStorage) {
-      jQuery('#sidebar_right #history').html(localStorage.getItem(document_id+'--##--history'));
-
-      // set the words in the original text as visited words
-      jQuery('#sidebar_right #history li a').each(function(i, el) {
-        word = jQuery(el).text();
-        if (jQuery(el).hasClass('current')) {
-          loadDefinition(word);
-        } else {
-          setVisitedWord(word);
-        }
-      })
-    }
+    // set the words in the original text as visited words
+    jQuery('#sidebar_right #history li a').each(function(i, el) {
+      word = jQuery(el).text();
+      if (jQuery(el).hasClass('current')) {
+        loadDefinition(word);
+      } else {
+        setVisitedWord(word);
+      }
+    })
 
     words = $("#original_text span.word, #sidebar_right #history ul li a");
     if (words.length > 0) {
       words.live('click', function() {
         word =  $(this).text();
         $('#sidebar_right').removeClass('initial');
-        $('#sidebar_right_inner').html("<h2>"+ word + " - loading...</h2>").addClass('loading');
+        $('#sidebar_right_inner').addClass('loading')
+        $('#sidebar_right_inner').find('h2').text(word + " - loading...");
 
         // add this word to the history
         $('#sidebar_right #history ul li a').removeClass('current');
@@ -89,9 +96,6 @@
             $('#sidebar_right #history').append('<ul></ul>')
           }
           $('#sidebar_right #history ul').append("<li><a href='"+word_link_text+"' class='current'>"+word+"</a></li>");
-        }
-        if (localStorage) {
-          localStorage.setItem(document_id+'--##--history', jQuery('#sidebar_right #history').html());
         }
 
         loadDefinition(word);

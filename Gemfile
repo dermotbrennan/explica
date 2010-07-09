@@ -29,14 +29,13 @@ gem 'em-synchrony', :git => 'git://github.com/dermotbrennan/em-synchrony.git', :
   'em-synchrony/em-http'
   ]
 
-#gem 'em-http-request',:git => 'git://github.com/igrigorik/em-http-request.git', :require => 'em-http'
-gem 'em-http-request' #, :path => '../em-http-request', :require => 'em-http'
+gem 'em-http-request'
 gem 'addressable', :require => 'addressable/uri'
 
 # heroku
-#group :production do
-#  gem 'pg'
-#end
+group :production do
+  gem 'pg'
+end
 
 # gem 'bj'
 # gem 'nokogiri', '1.4.1'
