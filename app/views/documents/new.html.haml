@@ -1,28 +1,45 @@
-#create
-  %h1 Create a new document
+#intro
+  %h1 explica is a simple tool for working with difficult text
+
+  %p Enter any text that contains many difficult words. Then you can click on any word to get a dictionary definition or wikipedia page.
+
+  %p== Try it below or check out a #{link_to 'sample', '#'}.
+
+#new
+  %a{:name => 'new'}
+
+  %h2 Enter text or a webpage URL
 
   = form_for @document do |f|
     = f.error_messages
     %fieldset
       %ul
-        %li= f.text_area :original, :cols => 80, :rows => 20
-        %li
+        %li= f.text_area :original, :cols => 75, :rows => 10
+        %li.submit= f.submit 'Submit'
+        %li.is_public
           = f.label :is_public, 'Make public'
           = f.check_box :is_public
-        %li= f.submit 'Submit'
+
+%hr.welcome
 
 #recent
   - if false
     #recent_user
       %h2 Recently opened by you
   
-
-  
   #recent_public
-    %h2 Recent public documents
+    %h2 Recent documents
     - if !Document.public.empty?
       %ul
         - Document.public.each do |document|
-          %li= link_to truncate_html(document.original, :length => 100), document
+          %li
+            .details
+              %p 
+                = document.created_at.strftime('%d').to_i.ordinalize
+                = document.created_at.strftime('%B %Y')
+              %p== #{time_ago_in_words(document.created_at)} ago
+            .snippet= link_to truncate_html(document.original, :length => 100), document
     - else
       %p None.
+
+#samples

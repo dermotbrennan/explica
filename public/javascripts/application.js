@@ -45,7 +45,7 @@
     }
 
     //$("#main_content").splitter();
-    $("#main_content>div").equalHeights(jQuery(document).height() - 41);
+    $("body#body-documents-show #main_content>div").equalHeights(jQuery(document).height() - 153);
 
     var inner_els = $("#main_content #sidebar_right, #main_content #original_text");
     resize_original = function(event, ui) {
