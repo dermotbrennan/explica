@@ -50,7 +50,7 @@ ol.alpha { list-style-type: lower-alpha; }
 }
 #header {
   width: 960px;
-  height: 53px;
+  height: 60px;
   margin: 0px auto;
   text-align: center;
   width: 960px;
@@ -64,7 +64,8 @@ body#body-documents-show #header {
   float: left;
 }
 
-#header #logo a { text-indent: -999em; display: block; width: 231px; height: 53px; background: transparent url(/images/logo.png) top left no-repeat; }
+#header #logo a { text-indent: -999em; display: block; width: 231px; height: 60px;
+    background: url("/images/logo.png") no-repeat scroll 0px -33px transparent }
 
 /* navbar */
 #header #navbar { 

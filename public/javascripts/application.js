@@ -2,6 +2,22 @@
 // This file is automatically included by javascript_include_tag :defaults
 (function($) {
   $(document).ready(function() {
+    var inner_els = $("#main_content #sidebar_right, #main_content #original_text");
+
+    function onWindowResize() {
+      setSidebarWidth();
+      setEqualHeights();
+    }
+
+    function setEqualHeights() {
+      inner_els.equalHeights(jQuery(document).height() - 123);
+      $("#main_content #sidebar_right").css('height', $("#main_content #sidebar_right").height() - 3); /* reduce the height by 3px to allow for a bottom border */
+    }
+
+    function setSidebarWidth() {
+      $('#sidebar_right').width((jQuery('#primary_wrapper').width()) - $('#original_text').width());
+    }
+
     // highlight this word as visited and current in the original text
     function setCurrentWord(word) {
       jQuery('#original_text span.word').removeClass('current');
@@ -20,17 +36,16 @@
       results = jQuery('#results_'+word);
       if (results.length > 0) {
         results.addClass('active');
+        $('#sidebar_right_inner').removeClass('loading');
         return true;
       } else {
         return false;
       }
     }
 
-
     function loadDefinition(word) {
       // highlight this word as visited and current in the original text
       setCurrentAndVisitedWord(word);
-      word_link_text = "#"+word;
 
       jQuery('#sidebar_right_inner .results').removeClass('active');
       if (!getLocalItem(word)) {
@@ -39,28 +54,26 @@
 
         $('#'+results_id).load('/definitions/'+ word, function() {
           inner_els.css("overflow", "auto");
+          $('#sidebar_right_inner').removeClass('loading');
         });
       } 
-      $('#sidebar_right_inner').removeClass('loading');
     }
 
-    //$("#main_content").splitter();
-    $("body#body-documents-show #main_content>div").equalHeights(jQuery(document).height() - 153);
 
-    var inner_els = $("#main_content #sidebar_right, #main_content #original_text");
+    setSidebarWidth();
+    setEqualHeights();
+
     resize_original = function(event, ui) {
-        $('#sidebar_right').width((jQuery('#primary_wrapper').width()) - $('#original_text').width() - 28);
-        //inner_els.css("height", "auto");
-
-        inner_els.equalHeights(jQuery(document).height() - 60);
+        setSidebarWidth();
+        setEqualHeights();
       }
 
     $(".resizable").resizable({handles: 'e', ghost: false,
       resize: resize_original,
       start: resize_original
     });
-
-    $('#sidebar_right').width((jQuery('#primary_wrapper').width()) - $('#original_text').width() - 28);
+   
+    window.onresize = onWindowResize;
 
     document_id_el = jQuery('#document_id');
     if (document_id_el.length > 0) {
@@ -82,8 +95,8 @@
       words.live('click', function() {
         word =  $(this).text();
         $('#sidebar_right').removeClass('initial');
-        $('#sidebar_right_inner').addClass('loading')
-        $('#sidebar_right_inner').find('h2').text(word + " - loading...");
+        $('#sidebar_right_inner').addClass('loading');
+        $('#sidebar_right_inner').children('#message').text(word + " - loading...");
 
         // add this word to the history
         $('#sidebar_right #history ul li a').removeClass('current');

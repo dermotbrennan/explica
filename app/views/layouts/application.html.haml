@@ -2,9 +2,9 @@
 %html
   %head
     %title Explica - advanced text comprehension tool
-    = stylesheet_link_tag "reset", "application", "documents"
-    = stylesheet_link_tag "ui-lightness/jquery-ui-1.8.1.custom"
-    - #= stylesheet_link_tag "http://bits.wikimedia.org/skins-1.5/common/commonPrint.css?281b"
+    = stylesheet_link_tag "reset", "application"
+    - if controller_name == 'documents' && action_name == 'show'
+      = stylesheet_link_tag 'documents', 'wikipedia'
     = csrf_meta_tag
   %body{:id => "body-#{controller_name}-#{action_name}"}
     #primary_wrapper

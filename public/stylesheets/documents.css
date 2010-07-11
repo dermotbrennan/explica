@@ -1,19 +1,30 @@
+/* ui resizeable from jquery ui css */
+.ui-resizable { position: relative;}
+.ui-resizable-handle { position: absolute;font-size: 0.1px;z-index: 99999; display: block;}
+.ui-resizable-disabled .ui-resizable-handle, .ui-resizable-autohide .ui-resizable-handle { display: none; }
+.ui-resizable-n { cursor: n-resize; height: 7px; width: 100%; top: -5px; left: 0; }
+.ui-resizable-s { cursor: s-resize; height: 7px; width: 100%; bottom: -5px; left: 0; }
+.ui-resizable-e { cursor: e-resize; width: 7px; right: -5px; top: 0; height: 100%; }
+.ui-resizable-w { cursor: w-resize; width: 7px; left: -5px; top: 0; height: 100%; }
+.ui-resizable-se { cursor: se-resize; width: 12px; height: 12px; right: 1px; bottom: 1px; }
+.ui-resizable-sw { cursor: sw-resize; width: 9px; height: 9px; left: -5px; bottom: -5px; }
+.ui-resizable-nw { cursor: nw-resize; width: 9px; height: 9px; left: -5px; top: -5px; }
+.ui-resizable-ne { cursor: ne-resize; width: 9px; height: 9px; right: -5px; top: -5px;}
+
 /* show document */
 #original_text {
   line-height: 160%;
   height: 100%;
   width: 50%;
-  padding: 10px;
   float: left;
   text-align: center;
-  
 }
 
 #original_text_inner {
   width: 582px;
   padding: 14px;
   border: 1px solid #dbdbdb;
-  margin: 10px auto;
+  margin: 20px auto;
   text-align: left;
   background-color: #fff;
 }
@@ -42,8 +53,9 @@
 #sidebar_right {
   float: left;
   width: 330px;
-  height: 100%;
-  /*border-left: 3px solid #b88;*/
+  height: 99.6%;
+  border-bottom: 3px solid #343434;
+  text-align: left;
   color: #fff;
   background-color: #eee;
   left: 0px !important;
@@ -102,7 +114,7 @@
   float: left;
   padding: 4px !important;
   background-color: #CFE2FF !important;
-  
+  text-decoration: none;
   color: #000 !important;
   border: 1px solid #8FBAFF !important;
   -moz-border-radius: 3px;
@@ -120,14 +132,27 @@
   border-color: #333 !important;
 }
 
-#sidebar_right h2 {
+#sidebar_right_inner #message {
+  display: none;
+}
+
+#sidebar_right_inner.loading #message, #sidebar_right_inner .results > h2 {
+  display: block;
   margin: 5px 0px;
   text-indent: 10px;
   line-height: 200%;
-  background-color: #b88;
+  background-color: #8FBAFF;
   float: left;
   clear: both;
   width: 100%;
+}
+
+#sidebar_right_inner .results {
+  display: none;
+}
+
+#sidebar_right_inner .results.active {
+  display: block;
 }
 
 #sidebar_right_inner .results > h2 {
