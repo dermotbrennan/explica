@@ -1,0 +1,16 @@
+javascripts:
+  base:
+    - public/javascripts/jquery.equalheights.js
+    - public/javascripts/jquery-ui-1.8.1.custom.min.js
+    - public/javascripts/application.js
+    - public/javascripts/rails.js
+    <% if Rails.env.production? %>
+    - public/javascripts/google_analytics.js
+    <% end %>
+stylesheets:
+  base:
+    - public/stylesheets/reset.css
+    - public/stylesheets/application.css
+  documents:
+    - public/stylesheets/documents.css
+    - public/stylesheets/wikipedia.css
