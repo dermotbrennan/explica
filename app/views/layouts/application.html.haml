@@ -30,3 +30,5 @@
     = javascript_include_tag "jquery.equalheights"
     = javascript_include_tag "jquery-ui-1.8.1.custom.min"
     = javascript_include_tag "application"
+    - if Rails.env.production?
+      = javascript_include_tag "google_analytics"
