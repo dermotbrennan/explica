@@ -1,3 +1,5 @@
+package_assets: off
+
 javascripts:
   base:
     - public/javascripts/jquery.equalheights.js
