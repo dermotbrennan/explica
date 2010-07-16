@@ -2,9 +2,9 @@
 %html
   %head
     %title Explica - advanced text comprehension tool
-    = include_stylesheets :base
+    = stylesheet_link_tag 'reset', 'application', :cache => true
     - if controller_name == 'documents' && action_name == 'show'
-      = include_stylesheets :documents
+      = stylesheet_link_tag 'documents', 'wikipedia'#, :cache => :documents
 
     = csrf_meta_tag
   %body{:id => "body-#{controller_name}-#{action_name}"}
@@ -28,4 +28,6 @@
             = link_to 'Dermot Brennan', 'http://www.dermotbrennan.net', :target => '_blank'
 
     = javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"
-    = include_javascripts :base
+    - base_js_files = ['jquery.equalheights.js', 'jquery-ui-1.8.1.custom.min.js', 'application.js', 'rails.js']
+    - base_js_files << 'google_analytics.js' if Rails.env.production?
+    = javascript_include_tag base_js_files#, :cache => 'base'

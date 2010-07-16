@@ -31,7 +31,7 @@ gem 'em-synchrony', :git => 'git://github.com/dermotbrennan/em-synchrony.git', :
 
 gem 'em-http-request'
 gem 'addressable', :require => 'addressable/uri'
-gem 'jammit', :git => 'git://github.com/documentcloud/jammit.git'
+#gem 'jammit', :git => 'git://github.com/documentcloud/jammit.git'
 
 # heroku
 group :production do
