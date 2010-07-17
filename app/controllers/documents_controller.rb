@@ -2,7 +2,13 @@ require "em-synchrony/em-http"
 
 class DocumentsController < ApplicationController
   def new
+    @recent_documents = Document.public.limit(5)
+    @sample_doc = Document.find(:first)
     @document = Document.new
+  end
+
+  def index
+    @documents = Document.public.paginate(:page => params[:page] || 1, :per_page => params[:per_page] || 100)
   end
 
   def create

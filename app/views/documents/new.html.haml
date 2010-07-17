@@ -3,7 +3,7 @@
 
   %p Enter any text that contains many difficult words. Then you can click on any word to get a dictionary definition or wikipedia page.
 
-  %p== Try it below or check out a #{link_to 'sample', '#'}.
+  %p== Try it below or check out a #{link_to 'sample', @sample_doc}.
 
 #new
   %a{:name => 'new'}
@@ -29,16 +29,9 @@
   
   #recent_public
     %h2 Recent documents
-    - if !Document.public.empty?
-      %ul
-        - Document.public.each do |document|
-          %li
-            .details
-              %p 
-                = document.created_at.strftime('%d').to_i.ordinalize
-                = document.created_at.strftime('%B %Y')
-              %p== #{time_ago_in_words(document.created_at)} ago
-            .snippet= link_to truncate_html(document.original, :length => 100), document
+    - if !@recent_documents.empty?
+      %ul.documents= render :partial => 'document', :collection => @recent_documents
+      %p= link_to 'view more', documents_path
     - else
       %p None.
 

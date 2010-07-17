@@ -92,7 +92,7 @@ body#body-documents-show #header {
 #main_content_inner {
   width: 920px;
   float: left;
-  text-align: center;
+  text-align: left;
   margin: 0px auto 0px 480px;
   left: -50%;
   background-color: #fff;
@@ -105,6 +105,10 @@ body#body-documents-show #header {
 
 #main_content_inner_with_sidebar {
   overflow: hidden !important;
+}
+
+body#body-documents-new #main_content_inner, body#body-documents-show #main_content_inner {
+  text-align: center;
 }
 
 /* intro */
@@ -202,29 +206,33 @@ hr.welcome {
   font-weight: bold;
 }
 
-#recent ul li {
+ul.documents li {
   float: left;
   width: 100%;
   margin: 8px 0px;
 }
 
-#recent .snippet, #recent .details {
+ul.documents .snippet, ul.documents .details {
   float: left;
 }
 
-#recent .details {
+ul.documents .details {
   font-style: italic;
   line-height: 120%;
   width: 120px;
 }
 
-#recent .snippet {
+ul.documents .snippet {
   margin-left: 5px;
   width: 335px;
 }
 
-#recent .snippet a { text-decoration: none; }
-#recent .snippet a:hover { text-decoration: underline; }
+ul.documents .snippet a { text-decoration: none; }
+ul.documents .snippet a:hover { text-decoration: underline; }
+
+body#body-documents-index ul.documents .snippet {
+  width: 750px;
+}
 
 
 /* footer */

@@ -19,6 +19,7 @@ gem 'lingua'
 gem 'ruby-stemmer'
 gem 'httparty'
 gem 'truncate_html'
+gem 'will_paginate', :git => 'git://github.com/mislav/will_paginate.git', :branch => 'rails3'
 
 gem 'thin'
 gem 'rack-fiber_pool', :require => 'rack/fiber_pool'

@@ -1,0 +1,8 @@
+- snippet_length ||= 100
+%li
+  .details
+    %p
+      = document.created_at.strftime('%d').to_i.ordinalize
+      = document.created_at.strftime('%B %Y')
+    %p== #{time_ago_in_words(document.created_at)} ago
+  .snippet= link_to truncate_html(document.original, :length => snippet_length), document

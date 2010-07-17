@@ -23,7 +23,7 @@ class Document < ActiveRecord::Base
       reverse
   end
 
-  scope :public, where(:is_public => true)
+  scope :public, where(:is_public => true).order('created_at desc')
 
 
   def to_param

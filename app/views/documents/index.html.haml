@@ -1,0 +1,8 @@
+%h1 Recent Documents
+
+- if @documents && !@documents.empty?
+  = page_entries_info(@documents, :entry_name => 'document')
+  - paginated_section @documents do
+    %ul.documents= render :partial => 'document', :collection => @documents, :locals => {:snippet_length => 300}
+- else
+  %p No documents
