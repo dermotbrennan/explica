@@ -27,6 +27,7 @@
   margin: 20px auto;
   text-align: left;
   background-color: #fff;
+  word-wrap: break-word;
 }
 
 #original_text #instructions {

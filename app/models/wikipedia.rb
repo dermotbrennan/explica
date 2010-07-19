@@ -19,7 +19,6 @@ class Wikipedia
   def self.parse(http)
 #    url = URI.parse(self.base_uri)
 
-
 #    body = res.try(:body)
     res = Crack::JSON.parse(http.response)
     #  ['query']['pages'].values[0]['imageinfo'][0]['thumburl']

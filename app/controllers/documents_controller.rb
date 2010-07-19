@@ -3,7 +3,7 @@ require "em-synchrony/em-http"
 class DocumentsController < ApplicationController
   def new
     @recent_documents = Document.public.limit(5)
-    @sample_doc = Document.find(:first)
+    @sample_doc = Document.public.last
     @document = Document.new
   end
 
@@ -16,6 +16,8 @@ class DocumentsController < ApplicationController
     if @document.save
       redirect_to @document
     else
+      @recent_documents = Document.public.limit(5)
+      @sample_doc = Document.public.last
       render :action => :new
     end
   end
