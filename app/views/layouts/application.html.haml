@@ -2,6 +2,9 @@
 %html
   %head
     %title Explica - advanced text comprehension tool
+    <meta name='description'>Advanced text comprehension tool for working with difficult text</meta>
+    /[if lt IE 9]
+      = javascript_include_tag "http://html5shiv.googlecode.com/svn/trunk/html5.js"
     = stylesheet_link_tag 'reset', 'application'
     - if controller_name == 'documents' && action_name == 'show'
       = stylesheet_link_tag 'documents', 'wikipedia'
