@@ -10,22 +10,22 @@
     }
 
     function setEqualHeights() {
-      inner_els.equalHeights(jQuery(document).height() - 123);
+      inner_els.equalHeights($(document).height() - 123);
       $("#main_content #sidebar_right").css('height', $("#main_content #sidebar_right").height() - 3); /* reduce the height by 3px to allow for a bottom border */
     }
 
     function setSidebarWidth() {
-      $('#sidebar_right').width((jQuery('#primary_wrapper').width()) - $('#original_text').width());
+      $('#sidebar_right').width(($('#primary_wrapper').width()) - $('#original_text').width());
     }
 
     // highlight this word as visited and current in the original text
     function setCurrentWord(word) {
-      jQuery('#original_text span.word').removeClass('current');
-      return jQuery("#original_text span.word:contains("+word+")").addClass('current');
+      $('#original_text span.word').removeClass('current');
+      return $("#original_text span.word:contains("+word+")").addClass('current');
     }
 
     function setVisitedWord(word) {
-      return jQuery("#original_text span.word:contains("+word+")").addClass('visited');
+      return $("#original_text span.word:contains("+word+")").addClass('visited');
     }
 
     function setCurrentAndVisitedWord(word) {
@@ -33,7 +33,7 @@
     }
 
     function getLocalItem(word) {
-      results = jQuery('#results_'+word);
+      results = $('#results_'+word);
       if (results.length > 0) {
         results.addClass('active');
         $('#sidebar_right_inner').removeClass('loading');
@@ -47,7 +47,7 @@
       // highlight this word as visited and current in the original text
       setCurrentAndVisitedWord(word);
 
-      jQuery('#sidebar_right_inner .results').removeClass('active');
+      $('#sidebar_right_inner .results').removeClass('active');
       if (!getLocalItem(word)) {
         results_id = 'results_' + word
         $('#sidebar_right_inner').append('<div id="' + results_id + '" class="results active"></div>')
@@ -75,15 +75,10 @@
    
     window.onresize = onWindowResize;
 
-    document_id_el = jQuery('#document_id');
-    if (document_id_el.length > 0) {
-      document_id = document_id_el.attr('data-id');
-    }
-
     // set the words in the original text as visited words
-    jQuery('#sidebar_right #history li a').each(function(i, el) {
-      word = jQuery(el).text();
-      if (jQuery(el).hasClass('current')) {
+    $('#sidebar_right #history li a').each(function(i, el) {
+      word = $(el).text();
+      if ($(el).hasClass('current')) {
         loadDefinition(word);
       } else {
         setVisitedWord(word);
