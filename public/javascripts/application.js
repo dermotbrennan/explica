@@ -9,13 +9,21 @@
       setEqualHeights();
     }
 
+    function updateResizableHandleHeight() {
+      $('#sidebar_right .ui-resizable-handle').height($('#sidebar_right_inner').height() + $('#history').height() + 10);
+    }
+
     function setEqualHeights() {
-      inner_els.equalHeights($(document).height() - 123);
-      $("#main_content #sidebar_right").css('height', $("#main_content #sidebar_right").height() - 3); /* reduce the height by 3px to allow for a bottom border */
+      //inner_els.equalHeights($(window).height() - 123);
+      inner_els.height($(window).height() - 123);
+      updateResizableHandleHeight();
+	//	alert($(window).height());
+      //$("#main_content #sidebar_right").css('height', $("#main_content #sidebar_right").height() - 3); /* reduce the height by 3px to allow for a bottom border */
     }
 
     function setSidebarWidth() {
-      $('#sidebar_right').width(($('#primary_wrapper').width()) - $('#original_text').width());
+      //$('#sidebar_right').width(($('#main_content_inner_with_sidebar').width()) - $('#original_text').width());
+      $('#original_text').width(($('#main_content_inner_with_sidebar').width()) - $('#sidebar_right').width());
     }
 
     // highlight this word as visited and current in the original text
@@ -37,6 +45,7 @@
       if (results.length > 0) {
         results.addClass('active');
         $('#sidebar_right_inner').removeClass('loading');
+        updateResizableHandleHeight();
         return true;
       } else {
         return false;
@@ -50,11 +59,12 @@
       $('#sidebar_right_inner .results').removeClass('active');
       if (!getLocalItem(word)) {
         results_id = 'results_' + word
-        $('#sidebar_right_inner').append('<div id="' + results_id + '" class="results active"></div>')
+        $('#sidebar_right_inner').append('<div id="' + results_id + '" class="results active"></div>');
 
         $('#'+results_id).load('/definitions/'+ word, function() {
-          inner_els.css("overflow", "auto");
+          //inner_els.css("overflow", "auto");
           $('#sidebar_right_inner').removeClass('loading');
+	  updateResizableHandleHeight();
         });
       } 
     }
@@ -68,7 +78,7 @@
         setEqualHeights();
       }
 
-    $(".resizable").resizable({handles: 'e', ghost: false,
+    $(".resizable").resizable({handles: 'w', ghost: false,
       resize: resize_original,
       start: resize_original
     });
@@ -83,7 +93,7 @@
       } else {
         setVisitedWord(word);
       }
-    })
+    });
 
     words = $("#original_text span.word, #sidebar_right #history ul li a");
     if (words.length > 0) {

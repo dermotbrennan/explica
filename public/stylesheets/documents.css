@@ -11,17 +11,23 @@
 .ui-resizable-nw { cursor: nw-resize; width: 9px; height: 9px; left: -5px; top: -5px; }
 .ui-resizable-ne { cursor: ne-resize; width: 9px; height: 9px; right: -5px; top: -5px;}
 
+#main_content_inner_with_sidebar {
+  float: left;
+  border-bottom: 3px solid #000;
+  width: 100%;
+}
+
 /* show document */
 #original_text {
   line-height: 160%;
-  height: 100%;
   width: 50%;
   float: left;
   text-align: center;
+  overflow-y: scroll;
 }
 
 #original_text_inner {
-  width: 582px;
+  width: 502px;
   padding: 14px;
   border: 1px solid #dbdbdb;
   margin: 20px auto;
@@ -54,10 +60,9 @@
 #sidebar_right {
   float: left;
   width: 330px;
-  height: 99.6%;
-  border-bottom: 3px solid #343434;
   text-align: left;
   color: #fff;
+  overflow-x: hidden;
   background-color: #eee;
   left: 0px !important;
 }
@@ -97,7 +102,7 @@
 }
 
 #sidebar_right #history {
-  width: 100%;
+  width: 98;
   float: left;
   clear: left;
   margin: 5px;

@@ -104,7 +104,7 @@ body#body-documents-show #header {
 }
 
 #main_content_inner_with_sidebar {
-  overflow: hidden !important;
+  /*overflow: hidden !important;*/
 }
 
 body#body-documents-new #main_content_inner, body#body-documents-show #main_content_inner {
