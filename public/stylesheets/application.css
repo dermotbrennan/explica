@@ -85,16 +85,18 @@ body#body-documents-show #header {
 #main_content {
   width: 100%;
   text-align: center;
-  position: relative;
   z-index: 5;
 }
 
+#main_content_center {
+  margin: 0px auto 0px auto;
+  width: 960px;
+}
+
 #main_content_inner {
-  width: 920px;
   float: left;
+  width: 920px;
   text-align: left;
-  margin: 0px auto 0px 480px;
-  left: -50%;
   background-color: #fff;
   border: 1px solid #dbdbdb;
   -moz-box-shadow: 0px 1px 3px #333;
@@ -236,5 +238,5 @@ body#body-documents-index ul.documents .snippet {
 
 
 /* footer */
-#footer_wrapper { width: 100%; text-align: center; }
+#footer_wrapper { width: 100%; text-align: center;} 
 #footer { width: 960px; margin: 5px auto; height: 50px; line-height: 50px; }

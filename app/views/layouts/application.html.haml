@@ -24,7 +24,8 @@
           - if @sidebar_present
             #main_content_inner_with_sidebar= yield
           - else
-            #main_content_inner= yield
+            #main_content_center 
+              #main_content_inner= yield
         #footer_wrapper
           #footer
             &copy; #{Time.now.year}
